@@ -25,14 +25,10 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/whoami", function (req, res) {
-  const ip = req.headers["x-forwarded-for"];
-  const language = req.headers["accept-language"];
-  const software = req.headers["user-agent"];
-
   res.json({
-    ipaddress: ip,
-    language: language,
-    software: software,
+    ipaddress: req.headers["x-forwarded-for"],
+    language: req.headers["accept-language"],
+    software: req.headers["user-agent"],
   });
 });
 
